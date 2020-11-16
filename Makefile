@@ -17,7 +17,7 @@ create_release:
 	$(SENTRY_CLI) releases -o $(SENTRY_ORG) new -p $(SENTRY_PROJECT) $(VERSION)
 
 associate_commits:
-	$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) set-commits --auto
+	-$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) set-commits --auto $(VERSION)
 
 upload_sourcemaps:
 	$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) files \
