@@ -11,13 +11,13 @@ VERSION=`$(SENTRY_CLI) releases propose-version`
 #setup_release:
 #	echo "TODO: <PLACEHOLDER>"
 
-setup_release: create_release upload_sourcemaps
+setup_release: create_release associate_commits upload_sourcemaps
 
 create_release:
 	$(SENTRY_CLI) releases -o $(SENTRY_ORG) new -p $(SENTRY_PROJECT) $(VERSION)
 
 associate_commits:
-	-$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) set-commits --auto $(VERSION)
+	$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) set-commits --auto $(VERSION)
 
 upload_sourcemaps:
 	$(SENTRY_CLI) releases -o $(SENTRY_ORG) -p $(SENTRY_PROJECT) files \
